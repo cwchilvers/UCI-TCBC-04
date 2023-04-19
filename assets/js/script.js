@@ -3,7 +3,6 @@ const body = document.body;
 const h1El = document.createElement("h1");
 const pEl = document.createElement("p");
 const buttonEl = document.createElement("button");
-
 // Header Text
 const h1E1TitleScreen = "Coding Quiz Challenge";
 const h1E1Q1 = "Commonly used data types do NOT include:";
@@ -17,12 +16,40 @@ const h1E1HighScores = "High Scores";
 const pElTitleScreen = "Try to answer the folowing code-related questions within the time limit. Keep in mind that wrong answers will penalize your score/time by 10 seconds!";
 // Button Text
 const buttonElTitleScreen = "Start Quiz";
+// Application Variables
+var quiz = true;
+var quizState = 0;
+var isLoaded = false;
+
+// Application Loop
+while (quiz === true) {
+    // Title Screen
+    if (quizState === 0 && isLoaded === false) {
+        TitleScreen();
+        isLoaded = true;
+    }
+    // Quiz
+    if (quizState === 1) {
+
+    }
+    // Game Over
+    if (quizState === 2) {
+
+    }
+    // 
+    if (quizState === 3) {
+
+    }
+}
 
 // Create Title Screen
-body.appendChild(h1El);
-h1El.textContent = h1E1TitleScreen;
-body.appendChild(pEl);
-pEl.textContent = pElTitleScreen;
-body.appendChild(buttonEl);
-buttonEl.textContent = buttonElTitleScreen;
+function TitleScreen() {
+    body.appendChild(h1El);
+    h1El.textContent = h1E1TitleScreen;
+    body.appendChild(pEl);
+    pEl.textContent = pElTitleScreen;
+    body.appendChild(buttonEl);
+    buttonEl.textContent = buttonElTitleScreen;
+}
+
 
