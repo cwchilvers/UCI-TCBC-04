@@ -8,11 +8,12 @@ const title = document.querySelector("#title");
 // Create elements
 const p = document.createElement("p");
 const li = document.createElement("li");
-const button = document.createElement("button");
+const start = document.createElement("button");
 const a1 = document.createElement("button");
 const a2 = document.createElement("button");
 const a3 = document.createElement("button");
 const a4 = document.createElement("button");
+const submit = document.createElement("button");
 const form = document.createElement("form");
 const label = document.createElement("label");
 const input = document.createElement("input");
@@ -23,7 +24,8 @@ const titleGameOver = "All done!";
 const titleHighScores = "High Scores";
 const inputLabel = "Enter Initials: ";
 const description = "Try to answer the folowing code-related questions within the time limit. Keep in mind that wrong answers will penalize your score/time by 10 seconds!";
-const start = "Start Quiz";
+const startText = "Start Quiz";
+const submitText = "Submit";
 const questions = [
     "Commonly used data types do NOT include:",                                                             // Question 1
     "The condition in an if/else statment is enclosed with _____.",                                         // Question 2
@@ -55,16 +57,16 @@ Title();
 // Draws Title Screen
 function Title() {
     container.appendChild(p).textContent = description;
-    container.appendChild(button).textContent = start;
+    container.appendChild(start).textContent = startText;
     timer.textContent = blank;
     title.textContent = titleTitleScreen;
-    button.addEventListener("click", SetupQuiz);
+    start.addEventListener("click", SetupQuiz);
 }
 
 // Sets up quiz and goes to first question
 function SetupQuiz() {
     container.removeChild(p);
-    container.removeChild(button);
+    container.removeChild(start);
     container.appendChild(li);
     li.appendChild(a1);
     li.appendChild(a2);
@@ -158,10 +160,18 @@ function GameOver() {
     container.appendChild(form);
     form.appendChild(label).textContent = inputLabel;
     form.appendChild(input);
+    form.appendChild(submit).textContent = submitText;
     title.textContent = titleGameOver;
+    submit.addEventListener("click", Submit);
 }
 
-// Draws high score screen
+// Stores user's initials in local storage and goes to high-score screen
+function Submit () {
+    HighScores();
+}
+
+// Draws high-score screen
 function HighScores() {
-    
+    container.removeChild(p);
+    container.removeChild(form);
 }
