@@ -1,83 +1,164 @@
+// Get elements
 const body = document.body;
+const highScores = document.querySelector("#high-scores");
+const timer = document.querySelector("#timer");
+const container = document.querySelector("#container");
+const title = document.querySelector("#title");
 
-// Created Elements
-const h1El = document.createElement("h1");
-const scoreEl = document.createElement("h3");
-const pEl = document.createElement("p");
-const buttonEl = document.createElement("button");
-const liEl = document.createElement("li");
-const answer1 = document.createElement("button");
-const answer2 = document.createElement("button");
-const answer3 = document.createElement("button");
-const answer4 = document.createElement("button");
+// Create elements
+const p = document.createElement("p");
+const li = document.createElement("li");
+const button = document.createElement("button");
+const a1 = document.createElement("button");
+const a2 = document.createElement("button");
+const a3 = document.createElement("button");
+const a4 = document.createElement("button");
 
-// Header Text
-const h1E1Title = "Coding Quiz Challenge";
-const h1E1Questions = [
+// Title Text
+const titleTitleScreen = "Coding Quiz Challenge";
+const questions = [
     "Commonly used data types do NOT include:",                                                             // Question 1
     "The condition in an if/else statment is enclosed with _____.",                                         // Question 2
     "Arrays in Javascript can be used to store _____.",                                                     // Question 3
     "String values must be enclosed within _____ when being assigned variables.",                           // Question 4
     "A very userful tool used during development and debugging for printing content to the debugger is:"    // Question 5
 ]
-const h1E1GameOver = "All done!";
-const h1E1HighScores = "High Scores";
+const titleGameOver = "All done!";
+const titleHighScores = "High Scores";
 
 // Paragraph Text
-const pElTitle = "Try to answer the folowing code-related questions within the time limit. Keep in mind that wrong answers will penalize your score/time by 10 seconds!";
+const description = "Try to answer the folowing code-related questions within the time limit. Keep in mind that wrong answers will penalize your score/time by 10 seconds!";
 
 // Button Text
-const buttonElTitle = "Start Quiz";
+const start = "Start Quiz";
 const answers = [
-    ["Strings","Booleans","Alerts","Numbers"],                              // Answers for Question 1 (Correct Answer = [2])
-    ["Quotes","Curly Brackets","Parenthesis","Square Brackets"],            // Answers for Question 2 (Correct Answer = [1])
-    ["Numbers and Strings","Other Arrays","Booleans","All of the Above"],   // Answers for Question 3 (Correct Answer = [3])
-    ["Commas","Curly Brackets","Quotes","Parenthesis"],                     // Answers for Question 4 (Correct Answer = [2])
-    ["Javascript","Terminal/Bash","For Loops","console.log"]                // Answers for Question 5 (Correct Answer = [3])
+    ["Strings", "Booleans", "Alerts", "Numbers"],                              // Answers for Question 1 (Correct Answer = [2])
+    ["Quotes", "Curly Brackets", "Parenthesis", "Square Brackets"],            // Answers for Question 2 (Correct Answer = [1])
+    ["Numbers and Strings", "Other Arrays", "Booleans", "All of the Above"],   // Answers for Question 3 (Correct Answer = [3])
+    ["Commas", "Curly Brackets", "Quotes", "Parenthesis"],                     // Answers for Question 4 (Correct Answer = [2])
+    ["Javascript", "Terminal/Bash", "For Loops", "console.log"]                // Answers for Question 5 (Correct Answer = [3])
 ];
+
+// Empty string
+const blank = '';
+
+// Correct/Incorrect Answers
+var answersArray = [Answers1, Answers2, Answers3 ,Answers4, Answers5];
 
 // Quiz Constants/Variables
 var question = 0;
 var score = 0;
+var time = 0
+var isPlaying = false;
 
-// Title Screen
 Title();
 
-// Title Screen
+// Draws Title Screen
 function Title() {
-
+    timer.textContent = blank;
+    title.textContent = titleTitleScreen;
+    container.appendChild(p).textContent = description;
+    container.appendChild(button).textContent = start;
+    button.addEventListener("click", SetupQuiz);
 }
 
-function Q1() {
-
+// Sets up quiz and goes to first question
+function SetupQuiz() {
+    container.removeChild(p);
+    container.removeChild(button);
+    container.appendChild(li);
+    li.appendChild(a1);
+    li.appendChild(a2);
+    li.appendChild(a3);
+    li.appendChild(a4);
+    isPlaying = true;
+    ResetVariables();
+    SetupQuestion();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-// Create Game Over
-function GameOver() {
-
-}
-
-// Create High Scores
-function HighScores() {
-
-}
-
-
-
-
-function ResetQuiz() {
+// Reset variables for quiz
+function ResetVariables() {
     question = 0;
     score = 0;
+    time = 50
+}
+
+// Sets up current question with corresponding answers
+function SetupQuestion() {
+    let a = 0
+    title.textContent = questions[question];
+    for (let i = 0; i < 4; i++) {
+        li.children[a].textContent = answers[question][i];
+        a++;
+    }
+    // Set up answers
+    answersArray[question]();
+}
+
+// Assigns which buttons have correct and incorrect answers
+function Answers1() {
+    li.children[0].addEventListener("click", Incorrect);
+    li.children[1].addEventListener("click", Incorrect);
+    li.children[2].addEventListener("click", Correct);
+    li.children[3].addEventListener("click", Incorrect);
+}
+
+function Answers2() {
+    li.children[0].addEventListener("click", Incorrect);
+    li.children[1].addEventListener("click", Correct);
+    li.children[2].addEventListener("click", Incorrect);
+    li.children[3].addEventListener("click", Incorrect);
+}
+
+function Answers3() {
+    li.children[0].addEventListener("click", Incorrect);
+    li.children[1].addEventListener("click", Incorrect);
+    li.children[2].addEventListener("click", Incorrect);
+    li.children[3].addEventListener("click", Correct);
+}
+
+function Answers4() {
+    li.children[0].addEventListener("click", Incorrect);
+    li.children[1].addEventListener("click", Incorrect);
+    li.children[2].addEventListener("click", Correct);
+    li.children[3].addEventListener("click", Incorrect);
+}
+
+function Answers5() {
+    li.children[0].addEventListener("click", Incorrect);
+    li.children[1].addEventListener("click", Incorrect);
+    li.children[2].addEventListener("click", Incorrect);
+    li.children[3].addEventListener("click", Correct);
+}
+
+// For when user selects correct answer
+function Correct() {
+    score++;
+    question++;
+    if (question < 5){
+        SetupQuestion();
+    } else {
+        GameOver();
+    }
+}
+    
+// For when user selects wrong answer
+function Incorrect() {
+    question++;
+    if (question < 5){
+        SetupQuestion();
+    } else {
+        GameOver();
+    }
+}
+
+// Draws game over screen
+function GameOver() {
+    container.removeChild(li);
+    title.textContent = titleGameOver;
+}
+
+// Draws high score screen
+function HighScores() {
+    
 }
