@@ -34,6 +34,12 @@ header {
     padding-left: 5%;
 }
 
+#timer {
+    position: absolute;
+    color: black;
+    width: 100%;
+    text-align: right;
+}
 
 
 h1 {
@@ -44,6 +50,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
 #container {
@@ -51,11 +58,11 @@ h1 {
     max-width: 900px;
 }
 
-button {
+button, li {
     background-color: var(--purple);
 	color: var(--black);
 	border: none;
-	padding: 10px;
+	
 	font: inherit;
 	cursor: pointer;
     font-weight: bold;
@@ -63,7 +70,68 @@ button {
     transition: 0.2s;
 }
 
-button:hover {
+button {
+    padding: 10px;
+}
+
+button:hover, li:hover {
     background-color: var(--white);
     color: var(--purple);
+}
+
+li {
+    list-style-type: none;
+    margin: 10px 0 10px 0; 
+    padding: 10px 10px 10px 20px;
+}
+
+li:hover {
+    padding-left: 40px;
+}
+
+input {
+    background-color: var(--white);
+    color: var(--black);
+    border: 5px solid var(--black);
+    height: 25px;
+    font-weight: bold;
+}
+
+input:focus {
+    border: 5px solid var(--purple);
+}
+
+*:focus {
+    outline: none;
+}
+
+label {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+form {
+    display: flex;
+    align-items: center;
+}
+
+#submit {
+    height: 37px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+span {
+    width: 80%;
+    max-width: 900px;
+    font-size: 25px;
+    color: var(--white);
+    text-align: right;
 }

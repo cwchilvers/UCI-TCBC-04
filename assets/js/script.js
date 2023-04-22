@@ -4,15 +4,16 @@ const highScores = document.querySelector("#high-scores");
 const timer = document.querySelector("#timer");
 const container = document.querySelector("#container");
 const title = document.querySelector("#title");
+const footer = document.querySelector("#message");
 
 // Create elements
 const p = document.createElement("p");
-const li = document.createElement("li");
+const ul = document.createElement("ul");
 const start = document.createElement("button");
-const a1 = document.createElement("button");
-const a2 = document.createElement("button");
-const a3 = document.createElement("button");
-const a4 = document.createElement("button");
+const a1 = document.createElement("li");
+const a2 = document.createElement("li");
+const a3 = document.createElement("li");
+const a4 = document.createElement("li");
 const submit = document.createElement("button");
 const form = document.createElement("form");
 const label = document.createElement("label");
@@ -49,7 +50,7 @@ var answersArray = [Answers1, Answers2, Answers3 ,Answers4, Answers5];
 // Quiz Constants/Variables
 var question = 0;
 var score = 0;
-var time = 0
+var time = 50;
 var isPlaying = false;
 
 highScores.addEventListener("click", HighScores);
@@ -68,14 +69,16 @@ function Title() {
 function SetupQuiz() {
     container.removeChild(p);
     container.removeChild(start);
-    container.appendChild(li);
-    li.appendChild(a1);
-    li.appendChild(a2);
-    li.appendChild(a3);
-    li.appendChild(a4);
+    container.appendChild(ul);
+    ul.appendChild(a1);
+    ul.appendChild(a2);
+    ul.appendChild(a3);
+    ul.appendChild(a4);
     isPlaying = true;
     ResetVariables();
     SetupQuestion();
+    timer.textContent = "Time: " + time;
+    CountDown();
 }
 
 // Reset variables for quiz
@@ -90,7 +93,7 @@ function SetupQuestion() {
     let a = 0
     title.textContent = questions[question];
     for (let i = 0; i < 4; i++) {
-        li.children[a].textContent = answers[question][i];
+        ul.children[a].textContent = answers[question][i];
         a++;
     }
     // Set up answers
@@ -100,58 +103,59 @@ function SetupQuestion() {
 // Assigns which buttons have correct and incorrect answers
 function Answers1() {
     RemoveEventListeners();
-    li.children[0].addEventListener("click", Incorrect);
-    li.children[1].addEventListener("click", Incorrect);
-    li.children[2].addEventListener("click", Correct);
-    li.children[3].addEventListener("click", Incorrect);
+    ul.children[0].addEventListener("click", Incorrect);
+    ul.children[1].addEventListener("click", Incorrect);
+    ul.children[2].addEventListener("click", Correct);
+    ul.children[3].addEventListener("click", Incorrect);
 }
 
 function Answers2() {
     RemoveEventListeners();
-    li.children[0].addEventListener("click", Incorrect);
-    li.children[1].addEventListener("click", Correct);
-    li.children[2].addEventListener("click", Incorrect);
-    li.children[3].addEventListener("click", Incorrect);
+    ul.children[0].addEventListener("click", Incorrect);
+    ul.children[1].addEventListener("click", Correct);
+    ul.children[2].addEventListener("click", Incorrect);
+    ul.children[3].addEventListener("click", Incorrect);
 }
 
 function Answers3() {
     RemoveEventListeners();
-    li.children[0].addEventListener("click", Incorrect);
-    li.children[1].addEventListener("click", Incorrect);
-    li.children[2].addEventListener("click", Incorrect);
-    li.children[3].addEventListener("click", Correct);
+    ul.children[0].addEventListener("click", Incorrect);
+    ul.children[1].addEventListener("click", Incorrect);
+    ul.children[2].addEventListener("click", Incorrect);
+    ul.children[3].addEventListener("click", Correct);
 }
 
 function Answers4() {
     RemoveEventListeners();
-    li.children[0].addEventListener("click", Incorrect);
-    li.children[1].addEventListener("click", Incorrect);
-    li.children[2].addEventListener("click", Correct);
-    li.children[3].addEventListener("click", Incorrect);
+    ul.children[0].addEventListener("click", Incorrect);
+    ul.children[1].addEventListener("click", Incorrect);
+    ul.children[2].addEventListener("click", Correct);
+    ul.children[3].addEventListener("click", Incorrect);
 }
 
 function Answers5() {
     RemoveEventListeners();
-    li.children[0].addEventListener("click", Incorrect);
-    li.children[1].addEventListener("click", Incorrect);
-    li.children[2].addEventListener("click", Incorrect);
-    li.children[3].addEventListener("click", Correct);
+    ul.children[0].addEventListener("click", Incorrect);
+    ul.children[1].addEventListener("click", Incorrect);
+    ul.children[2].addEventListener("click", Incorrect);
+    ul.children[3].addEventListener("click", Correct);
 }
 
 // Removes old event listeners so that new ones with different functions can be added
 function RemoveEventListeners() {
-    li.children[0].removeEventListener("click", Incorrect);
-    li.children[1].removeEventListener("click", Incorrect);
-    li.children[2].removeEventListener("click", Incorrect);
-    li.children[3].removeEventListener("click", Incorrect);
-    li.children[0].removeEventListener("click", Correct);
-    li.children[1].removeEventListener("click", Correct);
-    li.children[2].removeEventListener("click", Correct);
-    li.children[3].removeEventListener("click", Correct);
+    ul.children[0].removeEventListener("click", Incorrect);
+    ul.children[1].removeEventListener("click", Incorrect);
+    ul.children[2].removeEventListener("click", Incorrect);
+    ul.children[3].removeEventListener("click", Incorrect);
+    ul.children[0].removeEventListener("click", Correct);
+    ul.children[1].removeEventListener("click", Correct);
+    ul.children[2].removeEventListener("click", Correct);
+    ul.children[3].removeEventListener("click", Correct);
 }
 
 // For when user selects correct answer
 function Correct() {
+    footer.textContent = "Correct!";
     score++;
     question++;
     if (question < 5){
@@ -163,6 +167,7 @@ function Correct() {
     
 // For when user selects wrong answer
 function Incorrect() {
+    footer.textContent = "Wrong";
     question++;
     if (question < 5){
         SetupQuestion();
@@ -171,14 +176,30 @@ function Incorrect() {
     }
 }
 
+function CountDown() {
+    var timeInterval = setInterval(function () {
+      if (time > 1) {
+        timer.textContent = "Time: " + time;
+        time--;
+      } else {
+        // Once `timeLeft` gets to 0, set `timerEl` to an empty string
+        timer.textContent = blank;
+        ClearInterval(timeInterval);
+        GameOver();
+      }
+    }, 1000);
+  }
+
+
 // Draws game over screen
 function GameOver() {
-    container.removeChild(li);
+    container.removeChild(ul);
     container.appendChild(p).textContent = scoreDisplay + score;
     container.appendChild(form);
     form.appendChild(label).textContent = inputLabel;
     form.appendChild(input);
-    form.appendChild(submit).textContent = submitText;
+    form.appendChild(submit).setAttribute("id", "submit");
+    submit.textContent = submitText;
     title.textContent = titleGameOver;
     submit.addEventListener("click", Submit);
 }
@@ -193,4 +214,5 @@ function HighScores() {
     container.innerHTML = '';
     container.appendChild(title);
     title.textContent = titleHighScores;
+    footer.textContent = blank;
 }
