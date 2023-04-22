@@ -180,8 +180,8 @@ function Incorrect() {
 function CountDown() {
     setInterval(function () {
       if (time > 1) {
-        timer.textContent = "Time: " + time;
         time--;
+        timer.textContent = "Time: " + time;
       } else {
         GameOver();
       }
@@ -214,6 +214,9 @@ function Submit () {
 function HighScores() {
     container.innerHTML = blank;
     container.appendChild(title);
+    timer.textContent = blank;
+    time = 0;
+    isPlaying = false;
     title.textContent = titleHighScores;
     footer.textContent = blank;
 }
