@@ -21,7 +21,7 @@ const input = document.createElement("input");
 // Strings
 const titleTitleScreen = "Coding Quiz Challenge";
 const titleGameOver = "All done!";
-const titleHighScores = "High Scores";
+const titleHighScores = "High-Scores";
 const inputLabel = "Enter Initials: ";
 const description = "Try to answer the folowing code-related questions within the time limit. Keep in mind that wrong answers will penalize your score/time by 10 seconds!";
 const startText = "Start Quiz";
@@ -98,6 +98,7 @@ function SetupQuestion() {
 
 // Assigns which buttons have correct and incorrect answers
 function Answers1() {
+    RemoveEventListeners();
     li.children[0].addEventListener("click", Incorrect);
     li.children[1].addEventListener("click", Incorrect);
     li.children[2].addEventListener("click", Correct);
@@ -105,6 +106,7 @@ function Answers1() {
 }
 
 function Answers2() {
+    RemoveEventListeners();
     li.children[0].addEventListener("click", Incorrect);
     li.children[1].addEventListener("click", Correct);
     li.children[2].addEventListener("click", Incorrect);
@@ -112,6 +114,7 @@ function Answers2() {
 }
 
 function Answers3() {
+    RemoveEventListeners();
     li.children[0].addEventListener("click", Incorrect);
     li.children[1].addEventListener("click", Incorrect);
     li.children[2].addEventListener("click", Incorrect);
@@ -119,6 +122,7 @@ function Answers3() {
 }
 
 function Answers4() {
+    RemoveEventListeners();
     li.children[0].addEventListener("click", Incorrect);
     li.children[1].addEventListener("click", Incorrect);
     li.children[2].addEventListener("click", Correct);
@@ -126,10 +130,22 @@ function Answers4() {
 }
 
 function Answers5() {
+    RemoveEventListeners();
     li.children[0].addEventListener("click", Incorrect);
     li.children[1].addEventListener("click", Incorrect);
     li.children[2].addEventListener("click", Incorrect);
     li.children[3].addEventListener("click", Correct);
+}
+
+function RemoveEventListeners() {
+    li.children[0].removeEventListener("click", Incorrect);
+    li.children[1].removeEventListener("click", Incorrect);
+    li.children[2].removeEventListener("click", Incorrect);
+    li.children[3].removeEventListener("click", Incorrect);
+    li.children[0].removeEventListener("click", Correct);
+    li.children[1].removeEventListener("click", Correct);
+    li.children[2].removeEventListener("click", Correct);
+    li.children[3].removeEventListener("click", Correct);
 }
 
 // For when user selects correct answer
@@ -174,4 +190,5 @@ function Submit () {
 function HighScores() {
     container.removeChild(p);
     container.removeChild(form);
+    title.textContent = titleHighScores;
 }
