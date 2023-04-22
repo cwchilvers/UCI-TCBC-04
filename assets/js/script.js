@@ -52,6 +52,7 @@ var score = 0;
 var time = 0
 var isPlaying = false;
 
+highScores.addEventListener("click", HighScores);
 Title();
 
 // Draws Title Screen
@@ -188,7 +189,7 @@ function Submit () {
 
 // Draws high-score screen
 function HighScores() {
-    container.removeChild(p);
-    container.removeChild(form);
+    container.innerHTML = '';
+    container.appendChild(title);
     title.textContent = titleHighScores;
 }
