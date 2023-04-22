@@ -13,9 +13,17 @@ const a1 = document.createElement("button");
 const a2 = document.createElement("button");
 const a3 = document.createElement("button");
 const a4 = document.createElement("button");
+const form = document.createElement("form");
+const label = document.createElement("label");
+const input = document.createElement("input");
 
-// Title Text
+// Strings
 const titleTitleScreen = "Coding Quiz Challenge";
+const titleGameOver = "All done!";
+const titleHighScores = "High Scores";
+const inputLabel = "Enter Initials: ";
+const description = "Try to answer the folowing code-related questions within the time limit. Keep in mind that wrong answers will penalize your score/time by 10 seconds!";
+const start = "Start Quiz";
 const questions = [
     "Commonly used data types do NOT include:",                                                             // Question 1
     "The condition in an if/else statment is enclosed with _____.",                                         // Question 2
@@ -23,14 +31,6 @@ const questions = [
     "String values must be enclosed within _____ when being assigned variables.",                           // Question 4
     "A very userful tool used during development and debugging for printing content to the debugger is:"    // Question 5
 ]
-const titleGameOver = "All done!";
-const titleHighScores = "High Scores";
-
-// Paragraph Text
-const description = "Try to answer the folowing code-related questions within the time limit. Keep in mind that wrong answers will penalize your score/time by 10 seconds!";
-
-// Button Text
-const start = "Start Quiz";
 const answers = [
     ["Strings", "Booleans", "Alerts", "Numbers"],                              // Answers for Question 1 (Correct Answer = [2])
     ["Quotes", "Curly Brackets", "Parenthesis", "Square Brackets"],            // Answers for Question 2 (Correct Answer = [1])
@@ -38,9 +38,8 @@ const answers = [
     ["Commas", "Curly Brackets", "Quotes", "Parenthesis"],                     // Answers for Question 4 (Correct Answer = [2])
     ["Javascript", "Terminal/Bash", "For Loops", "console.log"]                // Answers for Question 5 (Correct Answer = [3])
 ];
-
-// Empty string
 const blank = '';
+var scoreDisplay = "You're final score is ";
 
 // Correct/Incorrect Answers
 var answersArray = [Answers1, Answers2, Answers3 ,Answers4, Answers5];
@@ -55,10 +54,10 @@ Title();
 
 // Draws Title Screen
 function Title() {
-    timer.textContent = blank;
-    title.textContent = titleTitleScreen;
     container.appendChild(p).textContent = description;
     container.appendChild(button).textContent = start;
+    timer.textContent = blank;
+    title.textContent = titleTitleScreen;
     button.addEventListener("click", SetupQuiz);
 }
 
@@ -155,6 +154,10 @@ function Incorrect() {
 // Draws game over screen
 function GameOver() {
     container.removeChild(li);
+    container.appendChild(p).textContent = scoreDisplay + score;
+    container.appendChild(form);
+    form.appendChild(label).textContent = inputLabel;
+    form.appendChild(input);
     title.textContent = titleGameOver;
 }
 
