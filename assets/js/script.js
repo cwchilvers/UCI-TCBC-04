@@ -138,6 +138,7 @@ function Answers5() {
     li.children[3].addEventListener("click", Correct);
 }
 
+// Removes old event listeners so that new ones with different functions can be added
 function RemoveEventListeners() {
     li.children[0].removeEventListener("click", Incorrect);
     li.children[1].removeEventListener("click", Incorrect);

@@ -14,39 +14,56 @@ body {
 
 p {
     color: var(--white);
+    font-size: 25px;
 }
 
 header {
     background-color: var(--purple);
     display: flex;
-    height: 60px;
+    height: 80px;
     color: var(--black);
     align-items: center;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 30px;
     width: 100%;
 }
 
 #high-scores {
     cursor: pointer;
-    transition: 0.3s;
+
     padding-left: 5%;
 }
 
-#high-scores:hover {
-    color: var(--white);
-}
+
 
 h1 {
-    font-size: 30px;
+    font-size: 40px;
 }
 
 #center {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 #container {
     width: 80%;
-    max-width: 800px;
+    max-width: 900px;
+}
+
+button {
+    background-color: var(--purple);
+	color: var(--black);
+	border: none;
+	padding: 10px;
+	font: inherit;
+	cursor: pointer;
+    font-weight: bold;
+    font-size: 25px;
+    transition: 0.2s;
+}
+
+button:hover {
+    background-color: var(--white);
+    color: var(--purple);
 }
