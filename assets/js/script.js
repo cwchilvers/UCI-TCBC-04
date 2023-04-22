@@ -74,10 +74,10 @@ function SetupQuiz() {
     ul.appendChild(a2);
     ul.appendChild(a3);
     ul.appendChild(a4);
-    isPlaying = true;
-    ResetVariables();
-    SetupQuestion();
     timer.textContent = "Time: " + time;
+    isPlaying = true;
+    CountDown();
+    SetupQuestion();
     CountDown();
 }
 
@@ -202,6 +202,8 @@ function GameOver() {
     submit.textContent = submitText;
     title.textContent = titleGameOver;
     submit.addEventListener("click", Submit);
+
+    ResetVariables();
 }
 
 // Stores user's initials in local storage and goes to high-score screen

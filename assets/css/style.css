@@ -30,15 +30,17 @@ header {
 
 #high-scores {
     cursor: pointer;
-
-    padding-left: 5%;
+    position: static;
+    width: 265px;
+    margin-left: 5%;
 }
 
 #timer {
-    position: absolute;
+    position: static;
     color: black;
     width: 100%;
     text-align: right;
+    margin-right: 5%;
 }
 
 
