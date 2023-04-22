@@ -195,7 +195,7 @@ function GameOver() {
     container.appendChild(p).textContent = scoreDisplay + score;
     container.appendChild(form);
     form.appendChild(label).textContent = inputLabel;
-    form.appendChild(input);
+    form.appendChild(input).maxLength = 10;
     form.appendChild(submit).setAttribute("id", "submit");
     submit.textContent = submitText;
     title.textContent = titleGameOver;
