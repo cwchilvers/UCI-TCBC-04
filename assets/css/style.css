@@ -1,0 +1,52 @@
+:root {
+    --purple: rgb(173, 21, 148);
+    --black: rgb(20, 16, 13);
+    --white: rgb(214, 212, 211);
+}
+
+body {
+    background-color: var(--black);
+    color: var(--purple);
+    font-family: 'Source Code Pro', monospace;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+p {
+    color: var(--white);
+}
+
+header {
+    background-color: var(--purple);
+    display: flex;
+    height: 60px;
+    color: var(--black);
+    align-items: center;
+    font-weight: bold;
+    font-size: 24px;
+    width: 100%;
+}
+
+#high-scores {
+    cursor: pointer;
+    transition: 0.3s;
+    padding-left: 5%;
+}
+
+#high-scores:hover {
+    color: var(--white);
+}
+
+h1 {
+    font-size: 30px;
+}
+
+#center {
+    display: flex;
+    justify-content: center;
+}
+
+#container {
+    width: 80%;
+    max-width: 800px;
+}

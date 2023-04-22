@@ -19,7 +19,7 @@ const label = document.createElement("label");
 const input = document.createElement("input");
 
 // Strings
-const titleTitleScreen = "Coding Quiz Challenge";
+const titleTitleScreen = "Coding Quiz";
 const titleGameOver = "All done!";
 const titleHighScores = "High-Scores";
 const inputLabel = "Enter Initials: ";
