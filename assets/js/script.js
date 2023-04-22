@@ -76,7 +76,7 @@ function SetupQuiz() {
     ul.appendChild(a4);
     timer.textContent = "Time: " + time;
     isPlaying = true;
-    CountDown();
+    ResetVariables();
     SetupQuestion();
     CountDown();
 }
@@ -176,19 +176,17 @@ function Incorrect() {
     }
 }
 
+// Countdown for timer
 function CountDown() {
-    var timeInterval = setInterval(function () {
+    setInterval(function () {
       if (time > 1) {
         timer.textContent = "Time: " + time;
         time--;
       } else {
-        // Once `timeLeft` gets to 0, set `timerEl` to an empty string
-        timer.textContent = blank;
-        ClearInterval(timeInterval);
         GameOver();
       }
     }, 1000);
-  }
+}
 
 
 // Draws game over screen
@@ -201,9 +199,10 @@ function GameOver() {
     form.appendChild(submit).setAttribute("id", "submit");
     submit.textContent = submitText;
     title.textContent = titleGameOver;
+    timer.textContent = blank;
     submit.addEventListener("click", Submit);
-
-    ResetVariables();
+    time = 0;
+    isPlaying = false;
 }
 
 // Stores user's initials in local storage and goes to high-score screen
@@ -213,7 +212,7 @@ function Submit () {
 
 // Draws high-score screen
 function HighScores() {
-    container.innerHTML = '';
+    container.innerHTML = blank;
     container.appendChild(title);
     title.textContent = titleHighScores;
     footer.textContent = blank;
