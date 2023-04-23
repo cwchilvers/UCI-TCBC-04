@@ -29,9 +29,9 @@ const startText = "Start Quiz";
 const submitText = "Submit";
 const questions = [
     "Commonly used data types do NOT include:",                                                             // Question 1
-    "The condition in an if/else statment is enclosed with _____.",                                         // Question 2
-    "Arrays in Javascript can be used to store _____.",                                                     // Question 3
-    "String values must be enclosed within _____ when being assigned variables.",                           // Question 4
+    "The condition in an if/else statment is enclosed with ＿.",                                         // Question 2
+    "Arrays in Javascript can be used to store ＿.",                                                     // Question 3
+    "String values must be enclosed within ＿ when being assigned variables.",                           // Question 4
     "A very userful tool used during development and debugging for printing content to the debugger is:"    // Question 5
 ]
 const answers = [
@@ -182,12 +182,12 @@ function CountDown() {
       if (time > 1) {
         time--;
         timer.textContent = "Time: " + time;
-      } else {
+      } 
+      if (time === 0 && isPlaying === true) {
         GameOver();
       }
     }, 1000);
 }
-
 
 // Draws game over screen
 function GameOver() {
@@ -200,14 +200,18 @@ function GameOver() {
     submit.textContent = submitText;
     title.textContent = titleGameOver;
     timer.textContent = blank;
-    submit.addEventListener("click", Submit);
     time = 0;
     isPlaying = false;
-}
+    // Submit initials
+    submit.addEventListener("click", function(event) {
+        event.preventDefault();
 
-// Stores user's initials in local storage and goes to high-score screen
-function Submit () {
-    HighScores();
+        if (input.value === "") {
+            displayMessage("error", "Please enter initials.");
+        } else {
+            localStorage.setItem("initials", input.value);
+        }
+    });
 }
 
 // Draws high-score screen
