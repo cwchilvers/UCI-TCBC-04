@@ -23,7 +23,7 @@ const input = document.createElement("input");
 const titleTitleScreen = "Coding Quiz";
 const titleGameOver = "All done!";
 const titleHighScores = "High-Scores";
-const inputLabel = "Enter Initials: ";
+const inputLabel = "Enter Name: ";
 const description = "Try to answer the folowing code-related questions within the time limit. Keep in mind that wrong answers will penalize your score/time by 10 seconds!";
 const startText = "Start Quiz";
 const submitText = "Submit";
@@ -52,6 +52,9 @@ var question = 0;
 var score = 0;
 var time = 50;
 var isPlaying = false;
+
+// High Scores
+highScoresArray = []
 
 highScores.addEventListener("click", HighScores);
 Title();
@@ -179,7 +182,7 @@ function Incorrect() {
 // Countdown for timer
 function CountDown() {
     setInterval(function () {
-      if (time > 1) {
+      if (time >= 1) {
         time--;
         timer.textContent = "Time: " + time;
       } 
@@ -205,11 +208,24 @@ function GameOver() {
     // Submit initials
     submit.addEventListener("click", function(event) {
         event.preventDefault();
+        // Store user's name and score
+        if (input.value.trim() !== "") {
+            let userScore = {
+                name: input.value.trim(),
+                score: score
+            }
 
-        if (input.value === "") {
-            displayMessage("error", "Please enter initials.");
-        } else {
-            localStorage.setItem("initials", input.value);
+            if (highScoresArray.length === 0) {
+                highScoresArray.push(userScore);
+            }
+
+
+
+            //localStorage.setItem("user-score", userScore);
+
+            console.log(highScoresArray);
+
+            HighScores();
         }
     });
 }
