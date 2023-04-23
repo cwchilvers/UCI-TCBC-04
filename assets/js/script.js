@@ -10,10 +10,12 @@ const footer = document.querySelector("#message");
 const p = document.createElement("p");
 const ul = document.createElement("ul");
 const start = document.createElement("button");
-const a1 = document.createElement("li");
-const a2 = document.createElement("li");
-const a3 = document.createElement("li");
-const a4 = document.createElement("li");
+const list = [
+    a1 = document.createElement("li"),
+    a2 = document.createElement("li"),
+    a3 = document.createElement("li"),
+    a4 = document.createElement("li")
+]
 const submit = document.createElement("button");
 const form = document.createElement("form");
 const label = document.createElement("label");
@@ -42,10 +44,8 @@ const answers = [
     ["Javascript", "Terminal/Bash", "For Loops", "console.log"]                // Answers for Question 5 (Correct Answer = [3])
 ];
 const blank = '';
-var scoreDisplay = "You're final score is ";
-
-// Correct/Incorrect Answers
-var answersArray = [Answers1, Answers2, Answers3 ,Answers4, Answers5];
+const scoreDisplay = "You're final score is ";
+const correctAnswers = ["Alerts", "Curly Brackets", "All of the Above", "Quotes", "console.log"];
 
 // Quiz Constants/Variables
 var question = 0;
@@ -53,7 +53,7 @@ var score = 0;
 var time = 50;
 var isPlaying = false;
 
-// High Scores
+// High-Scores
 var highScoresArray = []
 
 highScores.addEventListener("click", HighScores);
@@ -73,10 +73,9 @@ function SetupQuiz() {
     container.removeChild(p);
     container.removeChild(start);
     container.appendChild(ul);
-    ul.appendChild(a1);
-    ul.appendChild(a2);
-    ul.appendChild(a3);
-    ul.appendChild(a4);
+    for (let i = 0; i < 4; i++) {
+        ul.appendChild(list[i]);
+    }
     timer.textContent = "Time: " + time;
     isPlaying = true;
     ResetVariables();
@@ -100,48 +99,19 @@ function SetupQuestion() {
         a++;
     }
     // Set up answers
-    answersArray[question]();
+    SetupAnswers();
 }
 
 // Assigns which buttons have correct and incorrect answers
-function Answers1() {
+function SetupAnswers() {
     RemoveEventListeners();
-    ul.children[0].addEventListener("click", Incorrect);
-    ul.children[1].addEventListener("click", Incorrect);
-    ul.children[2].addEventListener("click", Correct);
-    ul.children[3].addEventListener("click", Incorrect);
-}
-
-function Answers2() {
-    RemoveEventListeners();
-    ul.children[0].addEventListener("click", Incorrect);
-    ul.children[1].addEventListener("click", Correct);
-    ul.children[2].addEventListener("click", Incorrect);
-    ul.children[3].addEventListener("click", Incorrect);
-}
-
-function Answers3() {
-    RemoveEventListeners();
-    ul.children[0].addEventListener("click", Incorrect);
-    ul.children[1].addEventListener("click", Incorrect);
-    ul.children[2].addEventListener("click", Incorrect);
-    ul.children[3].addEventListener("click", Correct);
-}
-
-function Answers4() {
-    RemoveEventListeners();
-    ul.children[0].addEventListener("click", Incorrect);
-    ul.children[1].addEventListener("click", Incorrect);
-    ul.children[2].addEventListener("click", Correct);
-    ul.children[3].addEventListener("click", Incorrect);
-}
-
-function Answers5() {
-    RemoveEventListeners();
-    ul.children[0].addEventListener("click", Incorrect);
-    ul.children[1].addEventListener("click", Incorrect);
-    ul.children[2].addEventListener("click", Incorrect);
-    ul.children[3].addEventListener("click", Correct);
+    for (let i = 0; i < 4; i++) {
+        if (ul.children[i].textContent !== correctAnswers[question]) {
+            ul.children[i].addEventListener("click", Incorrect);
+        } else {
+            ul.children[i].addEventListener("click", Correct);
+        }
+    }
 }
 
 // Removes old event listeners so that new ones with different functions can be added
@@ -196,9 +166,9 @@ function GameOver() {
     form.appendChild(label).textContent = inputLabel;
     form.appendChild(input).maxLength = 10;
     form.appendChild(submit).setAttribute("id", "submit");
-    submit.textContent = submitText;
     title.textContent = titleGameOver;
     timer.textContent = blank;
+    submit.textContent = submitText;
     time = 0;
     isPlaying = false;
     Submit();
@@ -245,8 +215,8 @@ function HighScores() {
     container.innerHTML = blank;
     container.appendChild(title);
     timer.textContent = blank;
-    time = 0;
-    isPlaying = false;
     title.textContent = titleHighScores;
     footer.textContent = blank;
+    time = 0;
+    isPlaying = false;
 }
