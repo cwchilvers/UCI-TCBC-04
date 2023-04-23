@@ -43,9 +43,9 @@ const answers = [
     ["Commas", "Curly Brackets", "Quotes", "Parenthesis"],                     // Answers for Question 4 (Correct Answer = [2])
     ["Javascript", "Terminal/Bash", "For Loops", "console.log"]                // Answers for Question 5 (Correct Answer = [3])
 ];
-const blank = '';
-const scoreDisplay = "You're final score is ";
 const correctAnswers = ["Alerts", "Curly Brackets", "All of the Above", "Quotes", "console.log"];
+const scoreDisplay = "You're final score is ";
+const blank = '';
 
 // Quiz Constants/Variables
 var question = 0;
@@ -137,6 +137,7 @@ function Correct() {
 // For when user selects wrong answer
 function Incorrect() {
     footer.textContent = "Wrong";
+    time -= 5;
     question++;
     if (question < 5){
         SetupQuestion();
