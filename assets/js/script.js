@@ -29,9 +29,9 @@ const startText = "Start Quiz";
 const submitText = "Submit";
 const questions = [
     "Commonly used data types do NOT include:",                                                             // Question 1
-    "The condition in an if/else statment is enclosed with ＿.",                                         // Question 2
-    "Arrays in Javascript can be used to store ＿.",                                                     // Question 3
-    "String values must be enclosed within ＿ when being assigned variables.",                           // Question 4
+    "The condition in an if/else statment is enclosed with ＿.",                                            // Question 2
+    "Arrays in Javascript can be used to store ＿.",                                                        // Question 3
+    "String values must be enclosed within ＿ when being assigned variables.",                              // Question 4
     "A very userful tool used during development and debugging for printing content to the debugger is:"    // Question 5
 ]
 const answers = [
@@ -54,7 +54,7 @@ var time = 50;
 var isPlaying = false;
 
 // High Scores
-highScoresArray = []
+var highScoresArray = []
 
 highScores.addEventListener("click", HighScores);
 Title();
@@ -146,14 +146,10 @@ function Answers5() {
 
 // Removes old event listeners so that new ones with different functions can be added
 function RemoveEventListeners() {
-    ul.children[0].removeEventListener("click", Incorrect);
-    ul.children[1].removeEventListener("click", Incorrect);
-    ul.children[2].removeEventListener("click", Incorrect);
-    ul.children[3].removeEventListener("click", Incorrect);
-    ul.children[0].removeEventListener("click", Correct);
-    ul.children[1].removeEventListener("click", Correct);
-    ul.children[2].removeEventListener("click", Correct);
-    ul.children[3].removeEventListener("click", Correct);
+    for (let i = 0; i < 4; i++) {
+        ul.children[i].removeEventListener("click", Incorrect);
+        ul.children[i].removeEventListener("click", Correct);;
+    }
 }
 
 // For when user selects correct answer
@@ -205,20 +201,34 @@ function GameOver() {
     timer.textContent = blank;
     time = 0;
     isPlaying = false;
-    // Submit initials
+    Submit();
+}
+
+// Submit name and score
+function Submit() {
     submit.addEventListener("click", function(event) {
         event.preventDefault();
-        // Store user's name and score
+        // Store user's name and score in an array for the leaderboard
         if (input.value.trim() !== "") {
+            // Create object for user's name and score
             let userScore = {
                 name: input.value.trim(),
                 score: score
             }
-
+            // If array it blank
             if (highScoresArray.length === 0) {
                 highScoresArray.push(userScore);
+            } 
+            // This is to add to the array in order ()
+            else {
+                for (let i = 0; i <= highScoresArray.length; i++) {
+                    if (score > highScoresArray[i].score) {
+                        highScoresArray.splice(i, 0, userScore)
+                    } else {
+                        highScoresArray.push(userScore);
+                    }
+                }
             }
-
 
 
             //localStorage.setItem("user-score", userScore);
