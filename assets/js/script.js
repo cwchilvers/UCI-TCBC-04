@@ -200,7 +200,6 @@ function Submit(event) {
             highScoresArray.push(userScore);
         } else {
             for (let i = 0; i < highScoresArray.length; i++) {
-                console.log(i);
                 if (score > highScoresArray[i].score) {
                     highScoresArray.splice(i, 0, userScore);
                     break
@@ -210,10 +209,10 @@ function Submit(event) {
                 }
             }
         } 
-
-
-
-        // dont add score if same score and user name
+        // Keep max of 10 items in array
+        if (highScoresArray.length > 10) {
+            highScoresArray.length = 10;
+        }
 
         //localStorage.setItem("user-score", userScore);
 
