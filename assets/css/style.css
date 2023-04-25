@@ -44,7 +44,7 @@ header {
     position: static;
     margin-left: 5%;
     padding-left: 10px;
-    width: 285px;
+
     background-color: var(--white);
     color: var(--purple);
 }

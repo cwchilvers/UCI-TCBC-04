@@ -20,6 +20,7 @@ const submit = document.createElement("button");
 const form = document.createElement("form");
 const label = document.createElement("label");
 const input = document.createElement("input");
+const playAgain = document.createElement("button");
 
 // Strings
 const titleTitleScreen = "Coding Quiz";
@@ -56,8 +57,17 @@ var isPlaying = false;
 // High-Scores
 var highScoresArray = []
 
+
+
+
+
 highScores.addEventListener("click", HighScores);
+submit.addEventListener("click", Submit, false);
 Title();
+
+
+
+
 
 // Draws Title Screen
 function Title() {
@@ -76,8 +86,6 @@ function SetupQuiz() {
     for (let i = 0; i < 4; i++) {
         ul.appendChild(list[i]);
     }
-    timer.textContent = "Time: " + time;
-    isPlaying = true;
     ResetVariables();
     SetupQuestion();
     CountDown();
@@ -85,6 +93,7 @@ function SetupQuiz() {
 
 // Reset variables for quiz
 function ResetVariables() {
+    isPlaying = true;
     question = 0;
     score = 0;
     time = 50
@@ -148,6 +157,7 @@ function Incorrect() {
 
 // Countdown for timer
 function CountDown() {
+    timer.textContent = "Time: " + time;
     setInterval(function () {
       if (time >= 1) {
         time--;
@@ -172,52 +182,62 @@ function GameOver() {
     submit.textContent = submitText;
     time = 0;
     isPlaying = false;
-    Submit();
 }
 
 // Submit name and score
-function Submit() {
-    submit.addEventListener("click", function(event) {
-        event.preventDefault();
-        // Store user's name and score in an array for the leaderboard
-        if (input.value.trim() !== "") {
-            // Create object for user's name and score
-            let userScore = {
-                name: input.value.trim(),
-                score: score
-            }
-            // If array it blank
-            if (highScoresArray.length === 0) {
-                highScoresArray.push(userScore);
-            } 
-            // This is to add to the array in order ()
-            else {
-                for (let i = 0; i <= highScoresArray.length; i++) {
-                    if (score > highScoresArray[i].score) {
-                        highScoresArray.splice(i, 0, userScore)
-                    } else {
-                        highScoresArray.push(userScore);
-                    }
+function Submit(event) {
+    event.preventDefault();
+
+    // Store user's name and score in an array for the leaderboard
+    if (input.value.trim() !== "") {
+        // Create object for user's name and score
+        let userScore = {
+            name: input.value.trim(),
+            score: score
+        }
+        // Add to array
+        if (highScoresArray.length === 0) {
+            highScoresArray.push(userScore);
+        } else {
+            for (let i = 0; i < highScoresArray.length; i++) {
+                console.log(i);
+                if (score > highScoresArray[i].score) {
+                    highScoresArray.splice(i, 0, userScore);
+                    break
+                } else {
+                    highScoresArray.push(userScore);
+                    break
                 }
             }
+        } 
 
 
-            //localStorage.setItem("user-score", userScore);
 
-            console.log(highScoresArray);
+        // dont add score if same score and user name
 
-            HighScores();
-        }
-    });
+        //localStorage.setItem("user-score", userScore);
+
+        console.log(highScoresArray);
+
+        HighScores();
+    }
 }
 
 // Draws high-score screen
 function HighScores() {
     container.innerHTML = blank;
     container.appendChild(title);
+    container.appendChild(playAgain).setAttribute("id", "play-again");
     timer.textContent = blank;
     title.textContent = titleHighScores;
+    playAgain.textContent = "Play Again";
     footer.textContent = blank;
     time = 0;
     isPlaying = false;
+    // Play Again
+    playAgain.addEventListener("click", function(event) {
+        event.preventDefault();
+        container.removeChild(playAgain);
+        Title();
+    });
 }
