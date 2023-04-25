@@ -153,3 +153,10 @@ span {
     color: var(--white);
     text-align: right;
 }
+
+#high-scores-container {
+    width: 500px;
+    background-color: blue;
+    height: 500px;
+    display: flex;
+}

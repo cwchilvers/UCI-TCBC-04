@@ -8,13 +8,40 @@ const footer = document.querySelector("#message");
 
 // Create elements
 const p = document.createElement("p");
-const ul = document.createElement("ul");
 const start = document.createElement("button");
-const list = [
+const ul1 = document.createElement("ul");
+const answersList = [
     a1 = document.createElement("li"),
     a2 = document.createElement("li"),
     a3 = document.createElement("li"),
-    a4 = document.createElement("li")
+    a4 = document.createElement("li"),
+]
+const highScoresContainer = document.createElement("div");
+const ul2 = document.createElement("ul");
+const namesList = [
+    n1 = document.createElement("li"),
+    n2 = document.createElement("li"),
+    n3 = document.createElement("li"),
+    n4 = document.createElement("li"),
+    n5 = document.createElement("li"),
+    n6 = document.createElement("li"),
+    n7 = document.createElement("li"),
+    n8 = document.createElement("li"),
+    n9 = document.createElement("li"),
+    n10 = document.createElement("li")
+]
+const ul3 = document.createElement("ul");
+const scoresList = [
+    s1 = document.createElement("li"),
+    s2 = document.createElement("li"),
+    s3 = document.createElement("li"),
+    s4 = document.createElement("li"),
+    s5 = document.createElement("li"),
+    s6 = document.createElement("li"),
+    s7 = document.createElement("li"),
+    s8 = document.createElement("li"),
+    s9 = document.createElement("li"),
+    s10 = document.createElement("li")
 ]
 const submit = document.createElement("button");
 const form = document.createElement("form");
@@ -57,17 +84,9 @@ var isPlaying = false;
 // High-Scores
 var highScoresArray = []
 
-
-
-
-
 highScores.addEventListener("click", HighScores);
 submit.addEventListener("click", Submit, false);
 Title();
-
-
-
-
 
 // Draws Title Screen
 function Title() {
@@ -82,9 +101,9 @@ function Title() {
 function SetupQuiz() {
     container.removeChild(p);
     container.removeChild(start);
-    container.appendChild(ul);
+    container.appendChild(ul1);
     for (let i = 0; i < 4; i++) {
-        ul.appendChild(list[i]);
+        ul1.appendChild(answersList[i]);
     }
     ResetVariables();
     SetupQuestion();
@@ -104,7 +123,7 @@ function SetupQuestion() {
     let a = 0
     title.textContent = questions[question];
     for (let i = 0; i < 4; i++) {
-        ul.children[a].textContent = answers[question][i];
+        ul1.children[a].textContent = answers[question][i];
         a++;
     }
     // Set up answers
@@ -115,10 +134,10 @@ function SetupQuestion() {
 function SetupAnswers() {
     RemoveEventListeners();
     for (let i = 0; i < 4; i++) {
-        if (ul.children[i].textContent !== correctAnswers[question]) {
-            ul.children[i].addEventListener("click", Incorrect);
+        if (ul1.children[i].textContent !== correctAnswers[question]) {
+            ul1.children[i].addEventListener("click", Incorrect);
         } else {
-            ul.children[i].addEventListener("click", Correct);
+            ul1.children[i].addEventListener("click", Correct);
         }
     }
 }
@@ -126,8 +145,8 @@ function SetupAnswers() {
 // Removes old event listeners so that new ones with different functions can be added
 function RemoveEventListeners() {
     for (let i = 0; i < 4; i++) {
-        ul.children[i].removeEventListener("click", Incorrect);
-        ul.children[i].removeEventListener("click", Correct);;
+        ul1.children[i].removeEventListener("click", Incorrect);
+        ul1.children[i].removeEventListener("click", Correct);;
     }
 }
 
@@ -171,7 +190,7 @@ function CountDown() {
 
 // Draws game over screen
 function GameOver() {
-    container.removeChild(ul);
+    container.removeChild(ul1);
     container.appendChild(p).textContent = scoreDisplay + score;
     container.appendChild(form);
     form.appendChild(label).textContent = inputLabel;
@@ -196,36 +215,25 @@ function Submit(event) {
             score: score
         }
         // Add to array
-        if (highScoresArray.length === 0) {
-            highScoresArray.push(userScore);
-        } else {
-            for (let i = 0; i < highScoresArray.length; i++) {
-                if (score > highScoresArray[i].score) {
-                    highScoresArray.splice(i, 0, userScore);
-                    break
-                } else {
-                    highScoresArray.push(userScore);
-                    break
-                }
-            }
-        } 
+        highScoresArray.push(userScore);
+        // Sort array From highest to lowest score
+        highScoresArray.sort(function(a, b) {
+            return parseInt(b.score) - parseInt(a.score);
+        });
         // Keep max of 10 items in array
         if (highScoresArray.length > 10) {
             highScoresArray.length = 10;
         }
-
-        //localStorage.setItem("user-score", userScore);
-
-        console.log(highScoresArray);
-
+        // Go to high scores screen
         HighScores();
     }
 }
 
-// Draws high-score screen
+// Draws high-scores screen
 function HighScores() {
     container.innerHTML = blank;
     container.appendChild(title);
+    HighScoresList();
     container.appendChild(playAgain).setAttribute("id", "play-again");
     timer.textContent = blank;
     title.textContent = titleHighScores;
@@ -236,7 +244,19 @@ function HighScores() {
     // Play Again
     playAgain.addEventListener("click", function(event) {
         event.preventDefault();
+        container.removeChild(highScoresContainer);
         container.removeChild(playAgain);
         Title();
     });
 }
+
+// Draws high-scores list
+function HighScoresList() {
+    container.appendChild(highScoresContainer).setAttribute("id", "high-scores-container");
+    highScoresContainer.appendChild(ul2).setAttribute("id", "high-scores-names");
+    for (let i = 0; i < highScoresArray.length; i++) {
+        ul2.appendChild(namesList[i]).textContent = (highScoresArray[i].name);
+        ul2.appendChild(scoresList[i]).textContent = (highScoresArray[i].score);
+    }
+}
+
