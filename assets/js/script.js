@@ -48,6 +48,7 @@ const form = document.createElement("form");
 const label = document.createElement("label");
 const input = document.createElement("input");
 const playAgain = document.createElement("button");
+const clearScores = document.createElement("button");
 
 // Strings
 const titleTitleScreen = "Coding Quiz";
@@ -244,8 +245,7 @@ function HighScores() {
     // Play Again
     playAgain.addEventListener("click", function(event) {
         event.preventDefault();
-        container.removeChild(highScoresContainer);
-        container.removeChild(playAgain);
+        Clear();
         Title();
     });
 }
@@ -253,10 +253,17 @@ function HighScores() {
 // Draws high-scores list
 function HighScoresList() {
     container.appendChild(highScoresContainer).setAttribute("id", "high-scores-container");
-    highScoresContainer.appendChild(ul2).setAttribute("id", "high-scores-names");
+    highScoresContainer.appendChild(ul2).setAttribute("id", "high-scores-list");
+    highScoresContainer.appendChild(ul3).setAttribute("id", "high-scores-list");
     for (let i = 0; i < highScoresArray.length; i++) {
         ul2.appendChild(namesList[i]).textContent = (highScoresArray[i].name);
-        ul2.appendChild(scoresList[i]).textContent = (highScoresArray[i].score);
+        ul3.appendChild(scoresList[i]).textContent = (highScoresArray[i].score);
     }
+}
+
+// Clearing the screen instead of .removeChild to avoid an error
+function Clear() {
+    container.innerHTML = blank;
+    container.appendChild(title);
 }
 

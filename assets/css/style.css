@@ -146,6 +146,7 @@ footer {
     justify-content: center;
     align-items: center;
 }
+
 span {
     width: 80%;
     max-width: 900px;
@@ -155,8 +156,24 @@ span {
 }
 
 #high-scores-container {
-    width: 500px;
-    background-color: blue;
+    width: 100%;
     height: 500px;
     display: flex;
+}
+
+#high-scores-list {
+    width: 50%;
+    padding: 0;
+}
+
+#high-scores-list > li {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 0;
+    cursor: default;
+}
+
+#high-scores-list:hover {
+    padding: 0;
+    cursor: default;
 }
