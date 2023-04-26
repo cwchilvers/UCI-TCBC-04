@@ -85,6 +85,9 @@ var isPlaying = false;
 
 // High-Scores
 var highScoresArray = [];
+//if (localStorage.getItem("scores") !== null) {
+//   highScoresArray = localStorage.getItem("scores");
+//}
 
 highScores.addEventListener("click", HighScores);
 clearScores.addEventListener("click", ClearScores);
@@ -228,7 +231,7 @@ function Submit(event) {
             highScoresArray.length = 10;
         }
         // Store scores locally
-        localStorage.setItem("scores", JSON.stringify(highScoresArray));
+        // localStorage.setItem("scores", JSON.stringify(highScoresArray));
         // Go to high scores screen
         HighScores();
     }
@@ -275,7 +278,7 @@ function ClearScores() {
         scoresList[i].textContent = blank;
     }
     highScoresArray = [];
-    localStorage.removeItem("scores");
+    // localStorage.removeItem("scores");
     Clear();
     HighScores();
 }
