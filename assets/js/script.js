@@ -47,6 +47,7 @@ const submit = document.createElement("button");
 const form = document.createElement("form");
 const label = document.createElement("label");
 const input = document.createElement("input");
+const bottomBottoms = document.createElement("div");
 const playAgain = document.createElement("button");
 const clearScores = document.createElement("button");
 
@@ -83,9 +84,10 @@ var time = 50;
 var isPlaying = false;
 
 // High-Scores
-var highScoresArray = []
+var highScoresArray = [];
 
 highScores.addEventListener("click", HighScores);
+clearScores.addEventListener("click", ClearScores);
 submit.addEventListener("click", Submit, false);
 Title();
 
@@ -225,6 +227,8 @@ function Submit(event) {
         if (highScoresArray.length > 10) {
             highScoresArray.length = 10;
         }
+        // Store scores locally
+        localStorage.setItem("scores", JSON.stringify(highScoresArray));
         // Go to high scores screen
         HighScores();
     }
@@ -235,10 +239,13 @@ function HighScores() {
     container.innerHTML = blank;
     container.appendChild(title);
     HighScoresList();
-    container.appendChild(playAgain).setAttribute("id", "play-again");
+    container.appendChild(bottomBottoms).setAttribute("id", "bottom-buttons");
+    bottomBottoms.appendChild(playAgain).setAttribute("id", "play-again");
+    bottomBottoms.appendChild(clearScores).setAttribute("id", "clear-scores");
     timer.textContent = blank;
     title.textContent = titleHighScores;
     playAgain.textContent = "Play Again";
+    clearScores.textContent = "Clear Scores";
     footer.textContent = blank;
     time = 0;
     isPlaying = false;
@@ -259,6 +266,18 @@ function HighScoresList() {
         ul2.appendChild(namesList[i]).textContent = (highScoresArray[i].name);
         ul3.appendChild(scoresList[i]).textContent = (highScoresArray[i].score);
     }
+}
+
+// Deletes all scores
+function ClearScores() {
+    for (let i = 0; i < highScoresArray.length; i++) {
+        namesList[i].textContent = blank;
+        scoresList[i].textContent = blank;
+    }
+    highScoresArray = [];
+    localStorage.removeItem("scores");
+    Clear();
+    HighScores();
 }
 
 // Clearing the screen instead of .removeChild to avoid an error

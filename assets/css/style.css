@@ -177,3 +177,19 @@ span {
     padding: 0;
     cursor: default;
 }
+
+#clear-scores {
+    color: var(--white);
+    background-color: transparent;
+    text-align: right;
+
+}
+
+#clear-scores:hover {
+    color: var(--purple);
+}
+
+#bottom-buttons {
+    display:flex;
+    gap: 50%;
+}
