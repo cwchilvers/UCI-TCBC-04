@@ -183,7 +183,7 @@ function Incorrect() {
 // Countdown for timer
 function CountDown() {
     timer.textContent = "Time: " + time;
-    SetInterval(function () {
+    setInterval(function () {
       if (time >= 1) {
         time--;
         timer.textContent = "Time: " + time;
