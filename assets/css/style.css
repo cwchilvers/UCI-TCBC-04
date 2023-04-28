@@ -10,6 +10,8 @@ body {
     font-family: 'Source Code Pro', monospace;
     margin: 0;
     letter-spacing: 1px;
+
+    user-select: none;
 }
 
 header {
