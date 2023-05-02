@@ -7,4 +7,4 @@ The following web app is a timed quiz on Javascript fundamentals where the user 
 ![Screenshot 2023-04-26 104459](https://user-images.githubusercontent.com/59628271/234660501-1a6c0ee9-d8fe-400e-b7fc-833b7cb12612.png)
 
 ## Deployed Web App
-[Coding Quiz](https://cwchilvers.github.io/UCI-CBC-04-CodingQuiz/)
+[Coding Quiz](https://apps.cwchilvers.io/apps/uci-bootcamp/UCI-CBC-04-CodingQuiz/index.html)
