@@ -1,10 +1,48 @@
-# Challenge 4: Coding Quiz
+<h1 align="center">
+  JavaScript Coding Quiz
+</h1>
+
+<p align="center">
+    <img src="https://img.shields.io/badge/HTML5-E34F26.svg?style=for-the-badge&logo=HTML5&logoColor=white" alt="HTML5">
+    <img src="https://img.shields.io/badge/CSS3-1572B6.svg?style=for-the-badge&logo=CSS3&logoColor=white" alt="CSS3">
+    <img src="https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=for-the-badge&logo=JavaScript&logoColor=black" alt="JavaScript">
+    <img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge">
+</p>
+
+<h4 align="center">A simple 5-day forecast weather dashboard.</h4>
+
+## Table of Contents
+1. [Description](#description)
+3. [Usage](#usage)
+4. [Screenshots](#screenshots)
+5. [Technologies Used](#technologies-used)
+6. [License](#license)
+7. [Credits](#credits)
+9. [Contact Information](#contact-information)
+
 ## Description
-The following web app is a timed quiz on Javascript fundamentals where the user is given a question and must select one of four answers. The user must correctly answer as many questions as possible before time runs out. When the user selects a wrong answer, time is subtracted from the timer. When all questions are answered or the timer hits 0, the game is over and user can enter their initials and see their standing on a leaderboard, which has a max display of 10 scores. The user also has the option to clear all scores and start fresh.
+This is a simple quiz application that tests the user's knowledge of JavaScript fundamentals. The quiz is timed and the user's score is based on the number of questions answered correctly. For each question answered incorrectly, the user's time is reduced by 5 seconds. The user's score is saved to local storage and displayed on the high scores page, which can also be accessed from the start page. The user can clear the high scores list or go back to the start page from the high scores page.
+
+## Usage
+To use this web application, either access the web app [here](https://example.com) or clone the repository locally and open the `index.html` file in your browser. Click the "Start Quiz" button to begin the quiz. Answer the questions by clicking on the answer you think is correct. If you answer a question incorrectly, 5 seconds will be deducted from the timer. When you have answered all of the questions or the timer reaches 0, the quiz will end and you will be prompted to enter your initials. Your score will be saved to local storage and displayed on the high scores page, which can be accessed from the start page. From the high scores page, you can clear the high scores list or go back to the start page.
 
 ## Screenshots
 ![Screenshot 2023-04-26 104303](https://user-images.githubusercontent.com/59628271/234660455-12efdda8-86a3-4a35-8760-d04b10ef04f7.png)
 ![Screenshot 2023-04-26 104459](https://user-images.githubusercontent.com/59628271/234660501-1a6c0ee9-d8fe-400e-b7fc-833b7cb12612.png)
 
-## Deployed Web App
-[Coding Quiz](https://apps.cwchilvers.io/apps/uci-bootcamp/UCI-CBC-04-CodingQuiz/index.html)
+## Technologies Used
+- HTML
+- CSS
+- JavaScript
+
+## License
+This project is licensed under the MIT License. See the [MIT License](https://opensource.org/licenses/mit/) page for details.
+
+## Credits
+* [Google Fonts](https://fonts.google.com/)
+
+## Contact Information
+<p align="center">
+    <a href="mailto:cwchilvers@gmail.com"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Unity"></a>
+    <a href="https://github.com/cwchilvers"><img src="https://img.shields.io/badge/GitHub-181717.svg?style=for-the-badge&logo=GitHub&logoColor=white"></a>
+</p>
