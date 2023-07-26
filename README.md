@@ -9,7 +9,7 @@
     <img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge">
 </p>
 
-<h4 align="center">A simple 5-day forecast weather dashboard.</h4>
+<h4 align="center">A simple quiz on Javascript fundamentals.</h4>
 
 ## Table of Contents
 1. [Description](#description)
