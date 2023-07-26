@@ -27,8 +27,10 @@ This is a simple quiz application that tests the user's knowledge of JavaScript 
 To use this web application, either access the web app [here](https://example.com) or clone the repository locally and open the `index.html` file in your browser. Click the "Start Quiz" button to begin the quiz. Answer the questions by clicking on the answer you think is correct. If you answer a question incorrectly, 5 seconds will be deducted from the timer. When you have answered all of the questions or the timer reaches 0, the quiz will end and you will be prompted to enter your initials. Your score will be saved to local storage and displayed on the high scores page, which can be accessed from the start page. From the high scores page, you can clear the high scores list or go back to the start page.
 
 ## Screenshots
-![Screenshot 2023-04-26 104303](https://user-images.githubusercontent.com/59628271/234660455-12efdda8-86a3-4a35-8760-d04b10ef04f7.png)
-![Screenshot 2023-04-26 104459](https://user-images.githubusercontent.com/59628271/234660501-1a6c0ee9-d8fe-400e-b7fc-833b7cb12612.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/59628271/234660455-12efdda8-86a3-4a35-8760-d04b10ef04f7.png">
+  <img src="https://user-images.githubusercontent.com/59628271/234660501-1a6c0ee9-d8fe-400e-b7fc-833b7cb12612.png">
+</p>
 
 ## Technologies Used
 - HTML
