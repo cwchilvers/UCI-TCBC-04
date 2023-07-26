@@ -85,9 +85,10 @@ var isPlaying = false;
 
 // High-Scores
 var highScoresArray = [];
-//if (localStorage.getItem("scores") !== null) {
-//   highScoresArray = localStorage.getItem("scores");
-//}
+var storedScores = JSON.parse(localStorage.getItem("scores"));
+if (storedScores !== null) {
+    highScoresArray = storedScores;
+}
 
 highScores.addEventListener("click", HighScores);
 clearScores.addEventListener("click", ClearScores);
@@ -132,7 +133,6 @@ function SetupQuestion() {
         ul1.children[a].textContent = answers[question][i];
         a++;
     }
-    // Set up answers
     SetupAnswers();
 }
 
@@ -152,7 +152,7 @@ function SetupAnswers() {
 function RemoveEventListeners() {
     for (let i = 0; i < 4; i++) {
         ul1.children[i].removeEventListener("click", Incorrect);
-        ul1.children[i].removeEventListener("click", Correct);;
+        ul1.children[i].removeEventListener("click", Correct);
     }
 }
 
@@ -184,13 +184,13 @@ function Incorrect() {
 function CountDown() {
     timer.textContent = "Time: " + time;
     setInterval(function () {
-      if (time >= 1) {
-        time--;
-        timer.textContent = "Time: " + time;
-      } 
-      if (time === 0 && isPlaying === true) {
-        GameOver();
-      }
+        if (time >= 1) {
+            time--;
+            timer.textContent = "Time: " + time;
+        } 
+        if (time === 0 && isPlaying === true) {
+            GameOver();
+        }
     }, 1000);
 }
 
@@ -230,9 +230,8 @@ function Submit(event) {
         if (highScoresArray.length > 10) {
             highScoresArray.length = 10;
         }
-        // Store scores locally
-        // localStorage.setItem("scores", JSON.stringify(highScoresArray));
-        // Go to high scores screen
+        localStorage.setItem("scores", JSON.stringify(highScoresArray));
+        Clear();
         HighScores();
     }
 }
@@ -278,7 +277,7 @@ function ClearScores() {
         scoresList[i].textContent = blank;
     }
     highScoresArray = [];
-    // localStorage.removeItem("scores");
+    localStorage.removeItem("scores");
     Clear();
     HighScores();
 }

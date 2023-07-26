@@ -1,24 +1,26 @@
+/* Color Variables */
 :root {
     --black: rgb(20, 16, 13);
     --purple: rgb(173, 21, 148);
     --white: rgb(214, 212, 211);
 }
 
+/* Global Styles */
 body {
     background-color: var(--black);
     color: var(--purple);
     font-family: 'Source Code Pro', monospace;
     margin: 0;
     letter-spacing: 1px;
-
     user-select: none;
 }
 
+/* Header Styles */
 header {
+    display: flex;
     align-items: center;
     background-color: var(--purple);
     color: var(--black);
-    display: flex;
     font-size: 30px;
     font-weight: bold;
     height: 80px;
@@ -26,12 +28,12 @@ header {
 }
 
 #high-scores {
-    align-items: center;
     cursor: pointer;
     display: flex;
+    align-items: center;
     height: 100%;
     margin-left: 5%;
-    position: static;
+    padding-left: 10px;
     transition: 0.3s;
     width: 275px;
 }
@@ -39,20 +41,26 @@ header {
 #high-scores:hover {
     background-color: var(--white);
     color: var(--purple);
-    cursor: pointer;
-    margin-left: 5%;
-    padding-left: 10px;
-    position: static;
 }
-    
 
 #timer {
     color: black;
     font-size: 30px;
     margin-right: 5%;
-    position: static;
     text-align: right;
     width: 100%;
+}
+
+/* Main Content Styles */
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#container {
+    max-width: 900px;
+    width: 80%;
 }
 
 h1 {
@@ -64,34 +72,22 @@ p {
     font-size: 25px;
 }
 
-main {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-}
-
-#container {
-    max-width: 900px;
-    width: 80%;
-}
-
-/* Default button element appearance */
-button, li {
+/* Button Styles */
+button,
+li {
     background-color: var(--purple);
-	border: none;
+    border: none;
     color: var(--black);
     cursor: pointer;
-	font: inherit;
+    font: inherit;
     font-size: 25px;
     font-weight: bold;
     transition: 0.3s;
-}
-
-button {
     padding: 10px;
 }
 
-button:hover, li:hover {
+button:hover,
+li:hover {
     background-color: var(--white);
     color: var(--purple);
 }
@@ -99,7 +95,7 @@ button:hover, li:hover {
 /* Answers */
 li {
     list-style-type: none;
-    margin: 10px 0 10px 0; 
+    margin: 10px 0;
     padding: 10px 10px 10px 20px;
 }
 
@@ -109,8 +105,8 @@ li:hover {
 
 /* Elements for game over screen */
 form {
-    align-items: center;
     display: flex;
+    align-items: center;
 }
 
 label {
@@ -132,23 +128,22 @@ input:focus {
     border: 5px solid var(--purple);
 }
 
-/* Remove default focus outline on input box*/
 *:focus {
     outline: none;
 }
 
 #submit {
-    align-items: center; 
-    display: flex;   
+    display: flex;
+    align-items: center;
     font-size: 18px;
     height: 37px;
     margin-left: 8px;
 }
 
-/* Footer where "Correct" and "Wrong" are displayed */
+/* Footer Styles */
 footer {
-    align-items: center;
     display: flex;
+    align-items: center;
     justify-content: center;
 }
 
@@ -172,12 +167,7 @@ span {
     width: 50%;
 }
 
-#high-scores-list:hover {
-    cursor: default;
-    padding: 0;
-}
-
-#high-scores-list > li {
+#high-scores-list>li {
     background-color: var(--black);
     color: var(--white);
     cursor: default;
@@ -185,7 +175,7 @@ span {
 }
 
 #bottom-buttons {
-    display:flex;
+    display: flex;
     gap: 50%;
 }
 
