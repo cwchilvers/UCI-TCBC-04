@@ -13,12 +13,12 @@
 
 ## Table of Contents
 1. [Description](#description)
-3. [Usage](#usage)
-4. [Screenshots](#screenshots)
-5. [Technologies Used](#technologies-used)
-6. [License](#license)
-7. [Credits](#credits)
-9. [Contact Information](#contact-information)
+2. [Usage](#usage)
+3. [Screenshots](#screenshots)
+4. [Technologies Used](#technologies-used)
+5. [License](#license)
+6. [Credits](#credits)
+7. [Contact Information](#contact-information)
 
 ## Description
 This is a simple quiz application that tests the user's knowledge of JavaScript fundamentals. The quiz is timed and the user's score is based on the number of questions answered correctly. For each question answered incorrectly, the user's time is reduced by 5 seconds. The user's score is saved to local storage and displayed on the high scores page, which can also be accessed from the start page. The user can clear the high scores list or go back to the start page from the high scores page.
