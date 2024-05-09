@@ -32,7 +32,7 @@ This is a simple quiz application that tests the user's knowledge of JavaScript 
 * JavaScript
 
 ## Usage
-The deployed version can be accessed at [uci-tcbc-04.cwchilvers.io](https://uci-tcbc-04.cwchilvers.io/).
+The deployed version can be accessed [here](https://uci-tcbc-04.cwchilvers.io/).
 
 Click the "Start Quiz" button to begin the quiz. Answer the questions by clicking on the answer you think is correct. If you answer a question incorrectly, 5 seconds will be deducted from the timer. When you have answered all of the questions or the timer reaches 0, the quiz will end and you will be prompted to enter your initials. Your score will be saved to local storage and displayed on the high scores page, which can be accessed from the start page. From the high scores page, you can clear the high scores list or go back to the start page.
 
